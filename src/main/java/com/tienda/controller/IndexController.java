@@ -1,8 +1,9 @@
 
 package com.tienda.controller;
 
-import com.tienda.dao.ClienteDao;
+import static com.fasterxml.jackson.databind.cfg.CoercionInputShape.Array;
 import com.tienda.domain.Cliente;
+import com.tienda.service.ClienteService;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
     @Autowired
-    ClienteDao  clienteDao;
+    ClienteService clienteService;
     @GetMapping("/")
     public String inicio(Model model) {
         log.info("Ahora utilizando MVC");
@@ -34,9 +36,31 @@ public class IndexController {
         //model.addAttribute("cliente", cliente);
 
         //List<Cliente> clientes= Arrays.asList(cliente,cliente2,cliente3);
-       var clientes= clienteDao.findAll();
+       var clientes= clienteService.getClientes();
+      //var clientes= Arrays.asList();
+      // List<Cliente> clientes = Arrays.asList();
        model.addAttribute("clientes", clientes);
        return "index";
     }
-    
+    @GetMapping("/nuevoCliente")
+    public String nuevoCliente(Cliente cliente){
+        return "modificarCliente";
+    }
+  
+    @PostMapping ("/guardarCliente")
+    public String guardarCliente (Cliente cliente){
+        clienteService.save(cliente);
+        return "redirect:/";
+    }
+    @GetMapping("/modificarCliente/{idCliente}")
+    public String modificarCliente(Cliente cliente, Model model){
+        cliente=clienteService.getCliente(cliente);
+        model.addAttribute("cliente", cliente);
+        return "modificarCliente";
+    }
+    @GetMapping("/eliminarCliente/{idCliente}")
+     public String eliminarCliente(Cliente cliente){
+         clienteService.delete(cliente);
+         return "redirect:/";
+     }
 }
