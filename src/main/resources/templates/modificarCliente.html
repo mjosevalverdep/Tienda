@@ -17,16 +17,13 @@
             <input type="hidden" name="idCliente" th:field="*{idCliente}" />
             <label for="nombre">Nombre:</label><br/> 
             <input type="text" name="nombre" th:field="*{nombre}" /><br/>        
-            <label for="apellidos">Apellidos:</label><br/>           
+            <label for="apellidoss">Apellidos:</label><br/>           
             <input type="text" name="apellidos" th:field="*{apellidos}" /><br/>  
-            
             <label for="correo">Correo:</label><br/>
-            <input type="email" name="correo" th:field="*{correo}" /><br/>   
-            
-            <label for="telefono">Teléfono:</label><br/>
-            <input type="tel" name="telefono" th:field="*{telefono}" /><br/>   
-            
-            <input type="submit" name="Guardar" value="Guardar" />
+            <input type="email" name="correo" th:field="*{correo}" /><br/>      
+            <label for="telefono">Telefono:</label><br/>
+            <input type="tel" name="telefono" th:field="*{telefono}" /><br/>      
+            <input type="submit" name="Guardar" value="Guardar" /><br/>      
         </form>
         <footer th:replace="layout/plantilla :: footer">
     </body>   

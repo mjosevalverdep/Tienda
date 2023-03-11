@@ -47,6 +47,26 @@ body{
     border-radius: 10px;
 }
 .nav-menu-link:hover{
+    font-size: 22px;
     background-color: lightskyblue;
-    transition: 0.5s;  
+    transition: 1s;  
+}
+.footer{
+    background-color: black;
+    text-align: center;
+    color:white;
+    height:20px;
+    position:fixed;
+    left:0;
+    width: 100%;
+    bottom:0;
+}
+.contenido{
+    background-color: lavender;
+    position:fixed;
+    top:80px;
+    bottom: 20px;
+    left:0;
+    width:100%;
+    overflow:auto;
 }
