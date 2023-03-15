@@ -43,6 +43,12 @@ public class ClienteServiceImpl implements ClienteService{
     public void delete(Cliente cliente) {
        clienteDao.deleteById(cliente.getIdCliente()); 
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Cliente> getNombreOApellidos(String nombre, String apellidos){
+       return (List<Cliente>)clienteDao.findByNombreOrApellidos(nombre, apellidos);
+    }
 }
 
 

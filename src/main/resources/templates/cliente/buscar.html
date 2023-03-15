@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+    <head> 
+         <title>TechShop</title>   
+        <meta charset="UTF-8"> 
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/> 
+    </head> 
+    <body> 
+            <header th:replace="layout/plantilla :: header"/>   
+            <br/>
+            <h1>Ingrese el nombre y apellido del cliente:</h1> 
+            <br/>   
+            <form th:action="@{/cliente/buscar}"
+                  method="POST"
+                  th:object="${cliente}">
+                <label for="nombre">Nombre</label></br>
+                <input type="text" name="nombre" th:field="*{nombre}"/></br>
+                <label for="apellido">Apellido</label></br>
+                <input type="text" name="apellidos" th:field="*{apellidos}"/></br>
+                <br/> 
+                <input type="submit" name="Buscar" th:value="Buscar"/></br>
+                </br>
+                <h2>-Resultado de busqueda-</h2>
+            </form>
+            <div th:if="${clientes != null}"> 
+                <div th:if="${clientes != clientes.empty}">
+                  <br/>     
+                    <table border="1"> 
+                        <thead>        
+                        <th>Nombre</th>  
+                        <th>Apellido</th>      
+                        <th>Correo</th>             
+                        <th>Telefono</th>            
+                        <th>Limite</th>        
+                        </thead>             
+                        <tbody>                     
+                            <tr th:each="cliente : ${clientes}">      
+                                <td th:text="${cliente.nombre}"></td>  
+                                <td th:text="${cliente.apellidos}"></td>    
+                                <td th:text="${cliente.correo}"></td>     
+                                <td th:text="${cliente.telefono}"></td>  
+                                <td th:text="${#numbers.formatDecimal(cliente.credito.limite, 3, 2)}"></td>  
+                            </tr>              
+                        </tbody>           
+                    </table>
+                </div> 
+                <br/> 
+                <div th:if="${clientes == null or clientes.empty}"> 
+                    Cliente no encontrado...
+                </div>  
+            </div> 
+    </body> 
+</html>
+
+
+
+
+

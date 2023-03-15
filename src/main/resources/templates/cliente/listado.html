@@ -13,7 +13,8 @@
             <br/>
             <h2>Listado de clientes</h2> 
             <br/> 
-            <a th:href="@{/cliente/nuevo}">Nuevo Cliente</a>           
+            <a th:href="@{/cliente/nuevo}">Nuevo Cliente</a>
+            <a th:href="@{/cliente/buscar}">Listar Cliente</a>           
             <div th:if="${clientes != null and !clientes.empty}"> 
                 <table border="1">                
                     <thead>      
@@ -47,3 +48,4 @@
         <footer th:replace="layout/plantilla :: footer" />   
     </body>
 </html>
+
