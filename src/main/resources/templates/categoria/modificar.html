@@ -11,24 +11,24 @@
     <body> 
         <header th:replace="layout/plantilla :: header"/>    
         <div class="contenido">       
-            <h2>Datos de Categoría</h2>
+            <h2 th:text="#{categoria.titulo}">Datos de Categoría</h2>
             <br/>
-            <a th:href="@{/categoria/listado}">Regresar</a>
+            <a th:href="@{/categoria/listado}" th:text="#{accion.regresar}">Regresar</a>
             <br/>
             <br/>
             <form th:action="@{/categoria/guardar}"
                   method="POST"
                   th:object="${categoria}">
                 <input type="hidden" name="idCategoria" th:field="*{idCategoria}" />
-                <label for="descripcion">Descripcion:</label><br/> 
+                <label for="descripcion" th:text="#{categoria.descripcion}">Descripcion:</label><br/> 
                 <input type="text" name="descripcion" th:field="*{descripcion}" /><br/>  
                 <br/>
-                <label for="activo">Activo:</label><br/> 
+                <label for="activo" th:text="#{categoria.activo}">Activo:</label><br/> 
                 <input type="checkbox" name="activo" th:field="*{activo}"/><br/> 
                 <br/><br/>
-                <input type="submit" name="guardar" value="Guardar"/><br/> 
+                <input type="submit" name="guardar" th:value="#{accion.guardar}"/><br/> 
             </form>  
-        </div>     ASDSASADDDDsadDDDDDDDD
+        </div>    
         <footer th:replace="layout/plantilla :: footer" />   
         </body>
 </html>
