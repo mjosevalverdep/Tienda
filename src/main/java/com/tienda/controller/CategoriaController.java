@@ -16,13 +16,15 @@ public class CategoriaController {
     
     @Autowired
     private CategoriaService categoriaService;
-    
+       
     @GetMapping("/categoria/listado")
-    public String inicio(Model model) { 
-       var categorias= categoriaService.getCategorias(false);
-       model.addAttribute("categorias", categorias);
-       return "/categoria/listado";
+    public String inicio(Model model) {
+        var categorias=categoriaService.getCategorias(false);
+        model.addAttribute("totalCategorias",categorias.size());
+        model.addAttribute("categorias",categorias);
+        return "/categoria/listado";
     }
+
     @GetMapping("/categoria/nuevo")
     public String nuevoCategoria(Categoria categoria){
         return "/categoria/modificar";

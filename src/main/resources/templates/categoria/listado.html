@@ -1,40 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TechShop</title>   
-        <meta charset="UTF-8"> 
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/> 
+    <head th:replace="layout/plantilla :: head">
+        <title>TechShop</title>
     </head>
     <body> 
-        <header th:replace="layout/plantilla :: header"/>    
-        <div class="contenido">       
-            <br/>
-            <h2 th:text="#{categoria.titulo}">Listado de Categorías</h2> 
-            <br/> 
-            <a th:href="@{/categoria/nuevo}" th:text="#{categoria.nuevo}">Nueva Categoría</a>           
-            <div th:if="${categorias != null and !categorias.empty}"> 
-                <table border="1">                
-                    <thead>   
-                        <tr>
-                            <th th:text="#{categoria.descripcion}">Descripcion</th>     
-                            <th th:text="#{categoria.activo}">Activo</th>  
-                        </tr>        
-                    </thead>            
-                    <tbody>            
-                        <tr th:each="categoria : ${categorias}">    
-                            <td th:text="${categoria.descripcion}"></td>     
-                            <td><input type="checkbox" name="activo" th:checked="${categoria.activo}" disabled="true"></td>                              
-                            <td><a th:href="@{/categoria/modificar/} + ${categoria.idCategoria}" th:text="#{accion.actualizar}">Actualizar</a></td>  
-                            <td><a th:href="@{/categoria/eliminar/} + ${categoria.idCategoria}" th:text="#{accion.eliminar}">Eliminar</a></td>   
-                        </tr>  
-                    </tbody>         
-                </table>         
-            </div>       
-            <div th:if="${categorias == null or categorias.empty}">  
-                <p th:text="#{categoria.no_mostrar}">No tenemos categorías que mostrar...</p>
-            </div>     
-        </div>     
-        <footer th:replace="layout/plantilla :: footer" />   
+        <header th:replace="layout/plantilla :: header" />
+
+        <section th:replace="categoria/fragmentosCategoria :: botonesAgregar"/>
+        <section th:replace="categoria/fragmentosCategoria :: agregarCategoria"/> 
+        <section th:replace="categoria/fragmentosCategoria :: listadoCategoria"/>
+        <footer th:replace="layout/plantilla :: footer" />
     </body>
 </html>

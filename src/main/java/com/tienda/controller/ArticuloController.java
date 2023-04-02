@@ -21,11 +21,17 @@ public class ArticuloController {
     @Autowired
     private CategoriaService categoriaService;
     
-    @GetMapping("/articulo/listado")
-    public String inicio(Model model) { 
-       var articulos= articuloService.getArticulos(false);
-       model.addAttribute("articulos", articulos);
-       return "/articulo/listado";
+   @GetMapping("/articulo/listado")
+    public String inicio(Model model) {
+        var articulos=articuloService.getArticulos(false);  
+        var inventarioTotal=0;
+        for (var a: articulos) {
+             inventarioTotal+=a.getExistencias()*a.getPrecio();
+        }
+        model.addAttribute("inventarioTotal",inventarioTotal);
+        model.addAttribute("totalArticulos",articulos.size());
+        model.addAttribute("articulos",articulos);
+        return "/articulo/listado";
     }
     @GetMapping("/articulo/nuevo")
     public String nuevoArticulo(Articulo articulo,Model model){

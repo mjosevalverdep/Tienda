@@ -2,40 +2,12 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TechShop</title>   
-        <meta charset="UTF-8"> 
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/> 
+    <head th:replace="layout/plantilla :: head">
+        <title>TechShop</title>
     </head>
     <body> 
-        <header th:replace="layout/plantilla :: header"/>    
-        <div class="contenido">       
-            <h2 th:text="#{articulo.datos}">Datos del articulo</h2>
-            <a th:href="@{/articulo/listado}" th:text="#{accion.regresar}">Regresar</a>
-            <br/><br/>
-            <form th:action="@{/articulo/guardar}"
-                  method="POST"
-                  th:object="${articulo}">
-                <input type="hidden" name="idArticulo" th:field="*{idArticulo}"/><br/>
-                <label for="categoria" th:text="#{articulo.categoria}">Categoría:</label><br/> 
-                <select th:field="*{idCategoria}">
-                    <option th:each="categoria:${categorias}"
-                            th:value="${categoria.idCategoria}"
-                            th:text="${categoria.descripcion}"/>       
-                </select><br/>       
-                <label for="descripcion" th:text="#{articulo.descripcion}">Descripcion:</label>    
-                <input type="text" name="descripcion" th:field="*{descripcion}"/><br/>  
-                <label for="detalle" th:text="#{articulo.detalle}">Detalle:</label>
-                <textarea name="detalle" th:field="*{detalle}" rows="6" cols="50"/><br/>  
-                <label for="precio" th:text="#{articulo.precio}">Precio:</label>
-                <input type="number" name="precio" th:field="*{precio}" /><br/>      
-                <label for="existencias" th:text="#{articulo.existencias}">Existencias:</label>
-                <input type="number" name="existencias" th:field="*{existencias}" /><br/>      
-                <label for="activo" th:text="#{articulo.activo}">Activo:</label>
-                <input type="checkbox" name="activo" th:field="*{activo}"/><br/> 
-                <input type="submit" name="guardar" th:value="#{accion.guardar}"/><br/> 
-            </form>  
-        </div>     
-        <footer th:replace="layout/plantilla :: footer" />   
+        <header th:replace="layout/plantilla :: header" />
+        <section th:replace="articulo/fragmentosArticulo :: editarArticulo"/> 
+        <footer th:replace="layout/plantilla :: footer" />
         </body>
 </html>
