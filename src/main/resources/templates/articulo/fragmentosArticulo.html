@@ -75,7 +75,7 @@
                             <div class="card-body">
                                 <h3 th:text="#{articulo.inventario}">Inventario Total</h3>
                                 <h4 class="display-4">
-                                    [[${new java.text.DecimalFormat('$#,##0.00').format(inventarioTotal)}]]
+                                   ¢[[${#numbers.formatDecimal(inventarioTotal, 1, 'DEFAULT', 2, 'DEFAULT')}]]
                                 </h4>
                             </div>
                         </div>
