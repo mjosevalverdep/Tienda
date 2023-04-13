@@ -68,6 +68,11 @@ public class SecurityConfig {
                         "/categoria/listado",
                         "/cliente/listado")
                 .hasAnyRole("ADMIN", "VENDEDOR")
+                .requestMatchers(
+                        "/carrito/agregar/**",
+                        "/carrito/eliminar/**",
+                        "/carrito/listado")
+                .hasRole("USER")
                 )
                 .formLogin((form) -> form
                 .loginPage("/login")
@@ -79,4 +84,9 @@ public class SecurityConfig {
     }
 }
 
+
+//Contraseñas de los usuarios
+//rebeca=456
+//juan=123
+//pedro=789
 
